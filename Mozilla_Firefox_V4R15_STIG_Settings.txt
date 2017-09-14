@@ -1,7 +1,7 @@
 1) Create new file name "local-settings.js" 
 in "C:\Program Files (x86)\Mozilla Firefox\defaults\pref" 
 and add one line:
-pref(ìgeneral.config.filenameî,îmozilla.cfgî);
+pref(‚Äúgeneral.config.filename‚Äù,‚Äùmozilla.cfg‚Äù);
 
 2) Create a new file called mozilla.txt
 Add all the text below (everything under contents of mozilla.txt).  
@@ -18,54 +18,56 @@ Contents of mozilla.txt:
 
 //Firefox Settings for mozilla.txt
 //V-15768
-lockPref(ìsecurity.default_personal_certî, ìAsk Every Timeî);
+lockPref(‚Äúsecurity.default_personal_cert‚Äù, ‚ÄúAsk Every Time‚Äù);
 //V-15771
-lockPref(ìnetwork.protocol-handler.external.shellî, false);
+lockPref(‚Äúnetwork.protocol-handler.external.shell‚Äù, false);
 //V-15772
-lockPref(ìplugin.disable_full_page_plugin_for_typesî, ìapplication/pdf,application/fdf,application/xfdf,application/lsl,application/lso,application/lss,application/iqy,application/rqy,application/xlk,application/xls,application/xlt,application/pot,application/pps,application/ppt,application/dos,application/dot,application/wks,application/bat,application/ps,application/eps,application/wch,application/wcm,application/wb1,application/wb3,application/rtf,application/doc,application/mdb,application/mde,application/ad,application/,application/adpî);
+lockPref(‚Äúplugin.disable_full_page_plugin_for_types‚Äù, ‚Äúapplication/pdf,application/fdf,application/xfdf,application/lsl,application/lso,application/lss,application/iqy,application/rqy,application/xlk,application/xls,application/xlt,application/pot,application/pps,application/ppt,application/dos,application/dot,application/wks,application/bat,application/ps,application/eps,application/wch,application/wcm,application/wb1,application/wb3,application/rtf,application/doc,application/mdb,application/mde,application/ad,application/,application/adp‚Äù);
 //V-15774
-lockPref(ìbrowser.formfill.enableî, false);
+lockPref(‚Äúbrowser.formfill.enable‚Äù, false);
 //V-15775
-lockPref(ìsignon.autofillFormsî, false);
+lockPref("signon.prefillForms", false);
 //V-15776
-lockPref(ìsignon.rememberSignonsî, false);
+lockPref(‚Äúsignon.rememberSignons‚Äù, false);
 //V-15777
-lockPref(ìprivacy.sanitize.sanitizeOnShutdownî, true);
-lockPref(ìprivacy.sanitize.promptOnSanitizeî, false);
+lockPref("browser.history_expire_days_min", 40);
 //V-15778
-lockPref(ìdom.disable_window_open_feature.statusî, true);
+lockPref(‚Äúdom.disable_window_open_feature.status‚Äù, true);
 //V-15779
-lockPref(ìdom.disable_window_move_resizeî, true);
+lockPref(‚Äúdom.disable_window_move_resize‚Äù, true);
 //V-15983
 lockPref("security.enable_tls", true);
 lockPref("security.enable_ssl2", false);
 lockPref("security.enable_ssl3", false);
-lockPref(ìsecurity.tls.version.minî, 1);
-lockPref(ìsecurity.tls.version.maxî, 3);
+lockPref(‚Äúsecurity.tls.version.min‚Äù, 2);
+lockPref(‚Äúsecurity.tls.version.max‚Äù, 3);
 //V-15985
-lockPref(ìdom.disable_window_flipî, true);
+lockPref(‚Äúdom.disable_window_flip‚Äù, true);
 //V-15986
-lockPref(ìdom.event.contextmenu.enabledî, false);
+lockPref(‚Äúdom.event.contextmenu.enabled‚Äù, false);
 lockPref("dom.disable_window_move_resize", true");
 lockPref("dom.disable_window_flip", true);
 //V-15987
-lockPref(ìdom.disable_window_status_changeî, true);
+lockPref(‚Äúdom.disable_window_status_change‚Äù, true);
 //V-15988
-lockPref(ìdom.disable_window_open_feature.statusî, true);
+lockPref(‚Äúdom.disable_window_open_feature.status‚Äù, true);
 //V-15989
 lockPref("security.warn_leaving_secure", true);
 //V-15990
-lockPref(ìbrowser.startup.homepageî, ìabout:blankî);
+lockPref(‚Äúbrowser.startup.homepage‚Äù, ‚Äúabout:blank‚Äù);
 //V-19741
-lockPref(ìapp.update.enabledî, false);
+lockPref(‚Äúapp.update.enabled‚Äù, false);
 //V-19742
-lockPref(ìextensions.update.enabledî, false);
+lockPref(‚Äúextensions.update.enabled‚Äù, false);
 //V-19744
-lockPref(ìbrowser.search.updateî, false);
+lockPref(‚Äúbrowser.search.update‚Äù, false);
 //V-64891
 lockPref("xpinstall.enabled", false);
 
 //OPTIONAL
+lockPref(‚Äúsignon.autofillForms‚Äù, false);
+lockPref(‚Äúprivacy.sanitize.sanitizeOnShutdown‚Äù, true);
+lockPref(‚Äúprivacy.sanitize.promptOnSanitize‚Äù, false);
 lockPref("privacy.item.history", false);
 lockPref("xpinstall.whitelist.required", true);
 lockPref("browser.shell.checkDefaultBrowser", false);
@@ -73,5 +75,5 @@ lockPref("browser.download.dir", "<DIR>");
 lockPref("browser.download.downloadDir", "<DIR>");
 //EOF
 
-
+(V-6318)
 Download DoD Root CA 2 cert from DISA >> https://militarycac.com/dodcerts.htm
