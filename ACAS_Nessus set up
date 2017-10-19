@@ -1,0 +1,237 @@
+NESSUS Scan Setup Instructions
+Provided by IA Support
+Modify Windows User Account Control Settings 
+1.	Click on Start and enter REGEDIT in the run bar and hit enter.
+2.	Add the following registry key:
+Hive: HKEY_LOCAL_MACHINE
+•	Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System
+•	Value: LocalAccountTokenFilterPolicy
+•	Value Type: REG_DWORD
+•	Value: 1
+Is DCOM is enabled on both the host and the target PC? Check the following registry entry on both computers:
+•	Key: HKLM\Software\Microsoft\Ole
+•	Name: EnableDCOM
+•	Type: REG_SZ
+•	Data: Y
+3.	Reboot Machine after these changes to registry are made.
+4.	Once, reboot is complete and you log in verify that the registry changes are still set.
+Modify McAfee VirusScan and Host Intrusion Prevention Settings
+1.	Right-click on the McAfee Shield in the Taskbar 
+•	Select Managed Features >> VirusScan Enterprise
+
+•	Or go to Start Menu >> McAfee >> VirusScan Console.  Select yes at UAC prompt.
+2.	Right-click on Access Protection >> Properties >> then Uncheck box Prevent McAfee services from being stopped.
+3.	Right-click on the McAfee Shield in the Taskbar 
+•	Select Managed Features >> Host Intrusion Prevention
+•	Select Task>> Unlock User Interface…
+•	Enter the Program password in the password filed and click OK.
+•	Uncheck all the boxes that are checked under IPS Policy Tab.
+
+Operational Environment Changes to Be Disabled Through Services
+
+Disable the Base Filtering Service
+1.	On the target asset click on Start>>Run.
+2.	Type services.msc.
+3.	Click the OK button.
+4.	Scroll down and find the Base Filtering Engine Service
+	If this service is listed as started, right click on it and select Stop Windows Firewall
+Note:  The windows firewall can be disabled but the configuration can still block traffic if the setting was in place before the firewall was disabled.  Bring up the windows firewall setting and make sure appropriate checkboxes are removed to ensure free and clear communication
+
+Select stop service once; you will see 3 services that will also stop with this service
+IPsec Policy Agent
+Windows Firewall
+IKE and AuthIP IPSec Keying Modules
+
+You may receive and error 1051; A stop control has been sent to service that other running services are dependent on.
+Select OK.
+Select Stop service again and all three services including Base Filtering Engine should be stopped.
+
+1.	Scroll down the list of services and select Windows Firewall/Internet Connection Sharing (ICS)
+2.	Right-click Windows Firewall/Internet Connection sharing (ICS) and select Properties.
+3.	Change Startup type from Automatic to Disabled.
+4.	Click the Apply button.
+5.	Click the Stop button.
+6.	Click the OK button to exit the dialog.
+
+Disable the McAfee Services
+1.	Scroll down the list of services and select McAfee Audit Manager Service.
+2.	Right-click McAfee Audit Manager Service and select Properties.
+3.	Change Startup type from Automatic to Disabled.
+4.	Click the Apply button.
+5.	Click the Stop button.
+6.	Click the OK button to exit the dialog.
+7.	Scroll down the list of services and select McAfee Firewall Core Service.
+8.	Right-click McAfee Firewall Core Service and select Properties.
+9.	Change Startup type from Automatic to Disabled.
+10.	Click the Apply button.
+11.	Click the Stop button.
+12.	Click the OK button to exit the dialog.
+13.	Scroll down the list of services and select McAfee Framework Service.
+14.	Right-click McAfee Framework Core Service and select Properties.
+15.	Change Startup type from Automatic to Disabled.
+16.	Click the Apply button.
+17.	Click the Stop button.
+18.	Click the OK button to exit the dialog.
+19.	Scroll down the list of services and select McAfee Host Intrusion Prevention Ipc Service.
+20.	Right-click McAfee Host Intrusion Prevention Ipc Service and select Properties.
+21.	Change Startup type from Automatic to Disabled.
+22.	Click the Apply button.
+23.	Click the Stop button.
+24.	Click the OK button to exit the dialog.
+25.	Scroll down the list of services and select McAfee Host Intrusion Prevention Service.
+26.	Right-click McAfee Host Intrusion Prevention Service and select Properties.
+27.	Change Startup type from Automatic to Disabled.
+28.	Click the Apply button.
+29.	Click the Stop button.
+30.	Click the OK button to exit the dialog.
+31.	Scroll down the list of services and select McAfee McShield.
+32.	Right-click McAfee McShield and select Properties.
+33.	Change Startup type from Automatic to Disabled.
+34.	Click the Apply button.
+35.	Click the Stop button.
+36.	Click the OK button to exit the dialog.
+37.	Scroll down the list of services and select McAfee Service Controller.
+38.	Right-click McAfee Service Controller and select Properties.
+39.	Change Startup type from Automatic to Disabled.
+40.	Click the Apply button.
+41.	Click the Stop button.
+42.	Click the OK button to exit the dialog.
+43.	Scroll down the list of services and select McAfee Task Manager.
+44.	Right-click McAfee Task Manager and select Properties.
+45.	Change Startup type from Automatic to Disabled.
+46.	Click the Apply button.
+47.	Click the Stop button.
+48.	Click the OK button to exit the dialog.
+49.	Scroll down the list of services and select McAfee Validation Trust Protection Service.
+50.	Right-click McAfee Validation Trust Protection Service and select Properties.
+51.	Change Startup type from Automatic to Disabled.
+52.	Click the Apply button.
+53.	Click the Stop button.
+54.	Click the OK button to exit the dialog. 
+
+Common Firewall Configuration Changes
+1.	Scroll down the list of services and select Windows Defender.
+2.	Right-click Windows Defender and select Properties.
+3.	Change Startup type from Automatic to Disabled.
+4.	Click the Apply button.
+5.	Click the Stop button.
+6.	Click the OK button to exit the dialog.
+
+
+
+
+
+
+
+Start the Remote Registry Service
+1.	Scroll down and find the Remote Registry Service
+2.	If the service is disabled, right click on the service and select Properties.
+3.	Change the startup type to Manual.
+4.	Click the OK button.
+5.	If this service is stopped right click on it and click Start.
+
+File Sharing
+File sharing is an essential component for ACAS Nessus scanner to run.  The only common windows administrative share required for ACAS Nessus scanner to run is the $ADMIN share.  The share is defined as c:\windows and should be verified as available prior to running the ACAS Nessus scanner scan.  You will have to create a share for each partition installed on the machine.
+
+1.	On the desktop, right-click My Computer and select Manage
+2.	Navigate to Shared Folders >> Right-Click Shares >> New Share….
+3.	Click Next at the Welcome to Create A Shared Folder Wizard
+4.	Select Browse… for Folder Path.
+5.	Select C: drive and Select OK >> Select Next.
+6.	Select Yes for prompt for selecting entire drive.
+7.	Enter C$ for Share Name>> Select Next.
+8.	Select Administrators have full access; other users have no access >> Select Finish >> Finish.
+
+Open a Command Prompt or Powershell window:
+a.	Select Start >> All Programs >> Accessories >> Windows Powershell >> Windows Powershell, Right Click and Run as Administrator.
+2.	Type the command: 
+net share
+3.	Verify the ADMIN$ share is listed and the resource is identified as c:\windows.
+4.	If the ADMIN$ share is present, check other settings. If not, continue to step 5.
+5.	To create the share:
+net share admin$ /users:100 (for Windows 7, 8, 2008, 2012)
+a.	Verify share creation by typing:
+net share
+b.	If the share was not created, check group policy to enable administrative shares.
+
+Group Policy Settings
+1.	For Windows 7 and up, verify that Group Policy Settings are permitted:
+a.	In the Start menu, select Search Programs and Files, and type:
+SecPol.msc
+b.	In the UAC administrative rights pop-up, select Yes.
+c.	Select Local Policies >> Security Options
+d.	Verify if the current policies MSS:AutoShareWKS and MSS:AutoShareServer are enabled.  If not, right-click Properties >> Enabled, and select Ok.
+e.	Verify that the policies Network access: Sharing and security model for local accounts is set to Classic.
+If not, right-click Properties >> Enabled, and select Ok.
+f.	Verify that the policies Network Security: LAN Manager authentication level match on the NESSUS scan box and workstation being scan (Send NTLMv2 response only.  Refuse LM & NTLM are enabled. 
+If not, right-click Properties >> Enabled, and select Ok.
+
+If you are still unable to connect system to run a successful credentialed scan. Add the manually add the (Admin account) to the following: 
+                      Select Local Policies >> User Rights Assignment 
+                          Verify Access this computer from the network has the Administrators group listed.          
+                                          If the Administrators group is not listed. Add the Administrators group.
+                                          In addition to the Administrators group add the Administrators account you are 
+                                          using to scan the system. i.e. Scan_Admin  
+
+Power-cycle the system to update the registry change.
+
+On NESSUS scan box:
+Select Start >> Run >> type regedit>> select OK.
+Select File >> Connect Network Registry >> Enter the IP address of the workstation to be scanned and select Check Names
+Enter the <domain> / domain username- <domain>\ <username>and Standard password for authentication.
+The IP address should be underlined if successful >> Click OK.
+You should see the IP address of the workstation in the drop down directory.
+
+Running a test scan in Nessus Scanner:
+Open a web browser to https://localhost:8834. The Nessus Scanner window opens.
+1.	Log on using the username: admin account and then enter the Program password.
+2.	Select Scans from the top menu bar. The Scans window opens.
+3.	Under Scans, click New Scan.
+4.	Select Basic Network Scan from the Scanner Templates.
+5.	In the Name field, enter the descriptive name as the following:
+6.	Unclassified builds will be begin with a U 
+7.	Classified builds will be begin with a C
+8.	The following is the correct name syntax:
+U_<Image Name>_ <Build Number>_Nessus_<date>_<your initials>
+C_<Image Name>_ <Build Number>_Nessus_<date>_<your initials>
+Example:  U_SYSTEM_1.1.1.0_Nessus_1-29-16_TD
+
+9.	In the Description field, enter a description.
+10.	In the Targets field, enter the IP address of the workstation to scan.
+
+11.	Select Discovery under the General section >> Change Scan Type from Port scan (common ports) to Port scan (all ports).
+
+12.	Select Advanced >> Change Scan Type from Default to Custom.
+
+13.	 Select General >> Uncheck Enable safe checks.
+
+14.	Select Credentials at the top of the menu >> Windows >> Verify Authentication method is set to Password.
+
+15.	Enter admin as the username, then the Program password.
+
+16.	 In the Domain field enter testdomain.
+
+17.	Under the Global Settings Tab below Check all 4 boxes:
+
+•	Never send credentials in the clear
+•	Do not use NTLMv1 authentication
+•	Start the Remote Registry service during the scan
+•	Enable administrative shares during the scan
+18.	Verify that no services that were stopped and disabled have started.
+19.	Click Save to start the scan. The Scan window opens and displays the status as Pending.
+20.	When the status displays as Completed, click the Scan Job.
+21.	To create a Report of a completed scan >> Select the Host >> Export from the menu >> PDF.
+22.	After a completed scan revert all the previous changes you made to the registry and services.
+
+23.	A successful scan on Windows WILL HAVE the following findings: 
+10394: Login
+10400: Remote Registry Access
+24269: WMI Available
+
+A successful scan on Windows WILL NOT HAVE the following findings: 
+21745: Authentication failure
+24786: Nessus Windows can’t perform
+26917: No Remote Registry Access
+
+If both conditions apply to your scan results, you have executed a successful scan.
+
